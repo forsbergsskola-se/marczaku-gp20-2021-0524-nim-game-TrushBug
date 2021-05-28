@@ -3,6 +3,7 @@
 
 const int boardSize = 9;
 const int magicSquare[boardSize] = { 4, 9, 2, 3, 5, 7, 8, 1, 6 };
+const int magicNumber = 15;
 int input;
 int turn = 0;
 char emptySlot = ' ';
@@ -50,12 +51,12 @@ void AskForPlayerInput()
 }
 
 bool hasWon(char player) {
-	for (int a = 0; a < 9; a++)
-		for (int b = 0; b < 9; b++)
-			for (int c = 0; c < 9; c++)
+	for (int a = 0; a < boardSize; a++)
+		for (int b = 0; b < boardSize; b++)
+			for (int c = 0; c < boardSize; c++)
 				if (a != b && a != c && b != c)
 					if (gameboard[a] == player && gameboard[b] == player && gameboard[c] == player)
-						if (magicSquare[a] + magicSquare[b] + magicSquare[c] == 15)
+						if (magicSquare[a] + magicSquare[b] + magicSquare[c] == magicNumber)
 							return true;
 	return false;
 }
@@ -78,6 +79,7 @@ int main()
 			if (player == 'X') player = 'O';
 			else player = 'X';
 		}
+
 		std::cout << "Player: " << player << " won!\n";
 
 		while (true)
